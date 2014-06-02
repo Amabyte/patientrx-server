@@ -34,7 +34,7 @@ class Api::V1::PatientSessionController < ApplicationController
           social_login_error format, I18n.t("social_login.email_not_found"), :not_acceptable
         else
           social_login_error
-        else
+        end
       end
     else
       social_login_error I18n.t("errors.params_missing"), :bad_request
