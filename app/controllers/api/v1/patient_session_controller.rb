@@ -1,9 +1,9 @@
 class Api::V1::PatientSessionController < ApplicationController
-  include SocialLogin
+  require 'social_login'
   
   def social_login
     if (params[:provider].present? && params[:token].present?)
-      social_user = get_social_user params
+      social_user = SocialLogin.get_social_user params
       if social_user[:error].nil? && social_user[:email].present? && social_user[:uuid] && social_user[:provider].present?
         patient = Patient.find_by_email social_user[:email]
         if patient.nil?

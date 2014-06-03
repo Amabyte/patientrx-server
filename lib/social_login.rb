@@ -1,7 +1,7 @@
  module SocialLogin
   require 'net/http'
   private
-  def get_social_user params
+  def self.get_social_user params
     if params[:provider] == 'facebook'
       user = get_user_from_facebook params[:token]
     elsif params[:provider] == 'google_oauth2'
@@ -12,7 +12,7 @@
     user
   end
 
-  def get_user_from_google_oauth2 token
+  def self.get_user_from_google_oauth2 token
     url = URI.parse("https://www.googleapis.com/oauth2/v2/userinfo")
     req = Net::HTTP::Get.new(url.path)
     req["Authorization"] = "Bearer " +token
@@ -25,7 +25,7 @@
     end
   end
 
-  def get_user_from_facebook token
+  def self.get_user_from_facebook token
     begin
       user = FbGraph::User.me(token).fetch
       {name: user.name, email: user.email, provider: "facebook", uuid: user.identifier}

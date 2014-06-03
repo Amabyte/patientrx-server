@@ -4,7 +4,7 @@ Patientrx::Application.routes.draw do
       cache as: 'v1' do
         devise_for :patients, :skip => [:sessions, :registration]
         devise_scope :patients do
-          post '/social_login', to: 'patient_session_controller#social_login'
+          post '/social_login', to: 'patient_session#social_login'
         end
       end
     end
