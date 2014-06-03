@@ -18,7 +18,7 @@ class Api::V1::PatientSessionController < ApplicationController
           patient.save!
         end
         unless patient.errors.empty?
-          social_login_error(format, patient.errors.full_messages, :unprocessable_entity)
+          social_login_error(patient.errors.full_messages, :unprocessable_entity)
         else
           social_account = PatientSocialAccount.new(uuid: social_user[:uuid], provider: social_user[:provider])
           social_account.patient = patient
@@ -26,7 +26,6 @@ class Api::V1::PatientSessionController < ApplicationController
           sign_in patient
           response_json = {}
           response_json[:is_new_patient] = is_new_patient
-          response_json[:token] = patient.authentication_token
           render json: response_json, status: :ok
         end
       else

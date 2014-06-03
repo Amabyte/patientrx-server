@@ -6,7 +6,7 @@ class Patient < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def self.create_social_patient social_user
-    patient = Patient.new(name: social_user[:name], email: social_user[:email], password: Devise.friendly_token.first(6))
+    patient = Patient.new(name: social_user[:name], email: social_user[:email], password: Devise.friendly_token.first(8))
     patient.save
     patient
   end
