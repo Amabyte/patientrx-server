@@ -26,6 +26,7 @@ class Api::V1::PatientSessionController < ApplicationController
           sign_in patient
           response_json = {}
           response_json[:is_new_patient] = is_new_patient
+          response_json[:patient] = patient
           render json: response_json, status: :ok
         end
       else
