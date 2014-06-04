@@ -2,12 +2,5 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :verified_request?
 
-  private
-  def verified_request?
-    if request.content_type == "application/json"
-      true
-    else
-      super()
-    end
-  end
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
 end
