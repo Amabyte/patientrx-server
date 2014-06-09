@@ -1,5 +1,6 @@
 class Case < ActiveRecord::Base
   validates_presence_of :patient_id, :name, :age, :gender
+  validates_inclusion_of :gender, :in => [I18n.t("gender.male"), I18n.t("gender.female")], :message => "should be '#{I18n.t("gender.male")}'' or '#{I18n.t("gender.female")}'"
   belongs_to :patient
   has_many :case_comments, dependent: :destroy
 

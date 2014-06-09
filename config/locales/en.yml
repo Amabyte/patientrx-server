@@ -4,3 +4,6 @@ en:
     default_error: "Authentication error. Please try again"
   errors:
     params_missing: "Required params missing"
+  gender:
+    male: "Male"
+    female: "Female"
