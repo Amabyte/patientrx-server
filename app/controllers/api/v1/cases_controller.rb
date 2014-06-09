@@ -3,7 +3,12 @@ class Api::V1::CasesController < InheritedResources::Base
   respond_to :json
 
   def last
-    respond_with begin_of_association_chain.cases.last
+    last = begin_of_association_chain.cases.last
+    if last
+      respond_with begin_of_association_chain.cases.last
+    else
+      render :nothing => true, status: :not_found
+    end
   end
 
   private
