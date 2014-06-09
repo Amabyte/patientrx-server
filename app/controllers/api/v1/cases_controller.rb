@@ -2,6 +2,10 @@ class Api::V1::CasesController < InheritedResources::Base
   before_action :authenticate_api_patient!
   respond_to :json
 
+  def last
+    respond_with begin_of_association_chain.cases.last
+  end
+
   private
     def permitted_params
       params.permit(:case => [:name, :age, :gender, :lat, :lag])
