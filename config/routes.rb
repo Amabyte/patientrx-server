@@ -11,6 +11,10 @@ Patientrx::Application.routes.draw do
             end
           end
         end
+        devise_for :doctors
+        resources :cases do
+          resources :case_comments
+        end
       end
     end
   end

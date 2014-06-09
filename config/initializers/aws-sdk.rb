@@ -1,0 +1,1 @@
+AWS.config(access_key_id: Settings.aws_s3.key_id, secret_access_key: Settings.aws_s3.key, region: Settings.aws_s3.reagion)

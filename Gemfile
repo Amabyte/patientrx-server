@@ -55,6 +55,14 @@ gem "api-versions", "~> 1.0"
 #social login
 gem 'fb_graph'
 
+#amazon s3
+gem 'aws-sdk'
+
+#settings
+gem 'settingslogic'
+
+gem 'inherited_resources'
+
 #heroku
 gem 'rails_12factor', group: :production
 ruby "2.1.1"
