@@ -41,7 +41,9 @@ class CaseComment < ActiveRecord::Base
     end
 
     def validate_case_comment
-      if message.blank? && image.blank? && audio.blank?
+      if self.case.case_comments.count == 0 && message.blank?
+        errors[:base] << 'Message should be present for first case comment'
+      elsif message.blank? && image.blank? && audio.blank?
         errors[:base] << 'Message, image or audio should be present'
       end
     end

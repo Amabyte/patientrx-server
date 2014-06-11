@@ -23,4 +23,8 @@ class Api::V1::CaseCommentsController < InheritedResources::Base
     def begin_of_association_chain
       current_api_patient.cases.find(params[:case_id])
     end
+    
+    def collection
+      @case_comments ||= end_of_association_chain.order("created_at DESC")
+    end
 end

@@ -20,4 +20,8 @@ class Api::V1::CasesController < InheritedResources::Base
     def begin_of_association_chain
       current_api_patient
     end
+
+    def collection
+      @cases ||= end_of_association_chain.order("created_at DESC")
+    end
 end
