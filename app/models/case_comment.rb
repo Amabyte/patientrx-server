@@ -5,11 +5,11 @@ class CaseComment < ActiveRecord::Base
   before_destroy :delete_files
 
   def image_url
-    get_file_url get_aws_s3_bucket[image_with_folder]
+    get_file_url get_aws_s3_bucket[image]
   end
 
   def audio_url
-    get_file_url get_aws_s3_bucket[audio_with_folder]
+    get_file_url get_aws_s3_bucket[audio]
   end
 
   def as_json(options = {})
@@ -20,8 +20,8 @@ class CaseComment < ActiveRecord::Base
 
   private
     def delete_files
-      get_aws_s3_bucket[image_with_folder].delete
-      get_aws_s3_bucket[audio_with_folder].delete
+      get_aws_s3_bucket[image].delete
+      get_aws_s3_bucket[audio].delete
     end
 
     def get_aws_s3_bucket
@@ -30,14 +30,6 @@ class CaseComment < ActiveRecord::Base
 
     def get_file_url object
       object.url_for(:get,{expires: Settings.link_expires.minute.from_now, secure: true}).to_s
-    end
-
-    def image_with_folder
-      "images/#{image}"
-    end
-
-    def audio_with_folder
-      "audios/#{audio}"
     end
 
     def validate_case_comment
