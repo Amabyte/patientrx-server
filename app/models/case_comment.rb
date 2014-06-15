@@ -29,7 +29,7 @@ class CaseComment < ActiveRecord::Base
     end
 
     def get_file_url object
-      object.url_for(:get,{expires: Settings.link_expires.second.from_now, secure: true}).to_s
+      object.url_for(:get,{expires: Settings.link_expires.minute.from_now, secure: true}).to_s
     end
 
     def image_with_folder
