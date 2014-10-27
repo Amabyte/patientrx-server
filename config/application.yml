@@ -1,0 +1,27 @@
+defaults: &defaults
+  regx_email: !ruby/regexp /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  link_expires: 20
+
+development:
+  <<: *defaults
+  aws_s3:
+    bucket_name: "dev-bucket"
+    key_id : "key_id"
+    key : "key"
+    reagion: "reagion"
+
+test:
+  <<: *defaults
+  aws_s3:
+    bucket_name: "test-bucket"
+    key_id : "key_id"
+    key : "key"
+    reagion: "reagion"
+
+production:
+  <<: *defaults
+  aws_s3:
+    bucket_name: "prod-bucket"
+    key_id : "key_id"
+    key : "key"
+    reagion: "reagion"
